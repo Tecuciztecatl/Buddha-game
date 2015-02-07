@@ -27,12 +27,12 @@ public class You {
 	
 	/**
 	 * 
-	 * @param hP vida del usuario
-	 * @param attacking si est‡ o no est‡ atacando
-	 * @param attackMAX m‡ximo de ataques! D:
-	 * @param x posici—n en X
-	 * @param y posici—n en X
-	 * @param z posici—n en X
+	 * @param hP User's life
+	 * @param attacking Will tell if you are attacking or not
+	 * @param attackMAX max number of possible attacks (stamina)
+	 * @param x Your position in X
+	 * @param y Your position in Y
+	 * @param z your position in Z
 	 */
 	public You(double hP, boolean attacking, int attackMAX, double x, double y, double z) {
 		HP = hP;
@@ -51,20 +51,10 @@ public class You {
 			buddhaNormal = TextureIO.newTexture(new File("src/Textures/buddha2.png"), false);
 			buddhaFiring = TextureIO.newTexture(new File("src/Textures/buddha.png"), false);
 		} catch (GLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//buddhaNormal.bind();
-		//gl.glTexEnvf(GL.GL_TEXTURE_ENV, GL.GL_TEXTURE_ENV_MODE, GL.GL_MODULATE);
-		//gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, GL.GL_NEAREST);
-		//gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, GL.GL_NEAREST);
-		//buddhaFiring.bind();
-		//gl.glTexEnvf(GL.GL_TEXTURE_ENV, GL.GL_TEXTURE_ENV_MODE, GL.GL_MODULATE);
-		//gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, GL.GL_NEAREST);
-		//gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, GL.GL_NEAREST);
 
 		target = new Target();
 	}
@@ -81,15 +71,6 @@ public class You {
 		this.attacks = 999;
 		this.dead = false;
 		
-		//buddhaNormal.bind();
-		//gl.glTexEnvf(GL.GL_TEXTURE_ENV, GL.GL_TEXTURE_ENV_MODE, GL.GL_MODULATE);
-		//gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, GL.GL_NEAREST);
-		//gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, GL.GL_NEAREST);
-		//buddhaFiring.bind();
-		//gl.glTexEnvf(GL.GL_TEXTURE_ENV, GL.GL_TEXTURE_ENV_MODE, GL.GL_MODULATE);
-		//gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, GL.GL_NEAREST);
-		//gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, GL.GL_NEAREST);
-
 		target.resetTarget();
 	}
 
@@ -236,30 +217,12 @@ public class You {
 				gl.glVertex3d(this.HP/this.maxHP, 0.465, 0);
 			gl.glEnd();
 		gl.glPopMatrix();
-		//System.out.println(this.HP/100.0);
 
 		gl.glPushMatrix();
-		target.drawTarget(gl);
-		//gl.glTranslated(0, 0, -7);
-//		if (this.Attacking) {
-//			this.attack(gl);
-//		}
-//			gl.glBegin(GL.GL_LINE_LOOP);
-//			gl.glColor3d(255, 160, 0);
-//				gl.glVertex3d( 0, -2.5, -7);
-//				gl.glVertex3d(this.target.targetX*100,this.target.targetY*100, -100);
-//			gl.glEnd();
-//		gl.glTranslated(0, -2.5, 0);
-		// Really basic and most common alpha blend function
-		
-
-		
-		
+		target.drawTarget(gl);		
 		
 		gl.glEnable(GL.GL_BLEND);
 		gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
-		
-		//gl.glDisable(GL.GL_DEPTH_TEST);
 		
 		if (this.attacks <= 0)
 			 this.recharging = true;
@@ -268,7 +231,6 @@ public class You {
 			gl.glTranslated(0, -2.5, this.Z-7);
 			buddhaFiring.bind();
 			this.attacks-=1.2;
-			//System.out.println(this.attacks/1000.0);
 		}
 		else {
 			gl.glTranslated(0, -2.5, this.Z-7);
@@ -294,34 +256,17 @@ public class You {
 		gl.glDisable(GL.GL_TEXTURE_2D);
 		gl.glDisable(GL.GL_BLEND);
 
-		//gl.glEnable(GL.GL_DEPTH_TEST);
 		gl.glColor3d(1, 1, 1);
 
 		gl.glPopMatrix();
-		
-		//this.attack(gl);
 	}
 
-	//private GLU glu = new GLU();
 	public void attack(GL gl) {
 		gl.glBegin(GL.GL_LINE_LOOP);
-			//gl.glColor3d(255, 160, 0);
 			gl.glColor3d(1, 0.9, 0);
 			gl.glVertex3d( 0, -2.5, this.Z-7);
 			gl.glVertex3d(this.target.targetX*8,this.target.targetY*8, this.target.targetZ-8);
 		gl.glEnd();
-
-		//gl.glTranslated(0, 0, -15);
-		//gl.glRotated(45, 1, 1, 1);
-		//GLUquadric quadric;
-		//quadric = glu.gluNewQuadric();
-		//glu.gluQuadricDrawStyle(quadric, GLU.GLU_POINT);
-		//glu.gluQuadricOrientation(quadric, GLU.GLU_INSIDE);
-		//glu.gluQuadricOrientation(quadric, GLU.GLU_OUTSIDE);
-		//glu.gluCylinder(quadric, .05, .05, 70, 30, 10);
-		//glu.gluCylinder(quadric2, 16, 10, 30, 30, 10);
-
-		//gl.glTranslated(0, 0, 10);
 	}
 	
 }

@@ -21,20 +21,14 @@ public class Target {
 		else if (UP) targetY += 0.015;
 		if (RIGHT) targetX += 0.015;
 		else if (LEFT) targetX -= 0.015;
-//		if (targetX >= 0.46) targetX = 0.459;
-//		if (targetX <= -0.46) targetX = -0.459;
-//		if (targetY >= 0.447) targetY = 0.446;
-//		if (targetY <= -0.447) targetY = -0.446;
 
 		if (targetX >= 0.469) targetX = 0.469;
 		else if (targetX <= -0.469) targetX = -0.469;
 		if (targetY >= 0.455) targetY = 0.455;
 		else if (targetY <= -0.455) targetY = -0.455;
 	
-	//Para que no gire lo que no quiero que gire! D:
 	gl.glLoadIdentity();
 	gl.glTranslated(targetX, targetY, targetZ-1);
-		//gl.glNewList(Target, GL.GL_COMPILE);
 			gl.glBegin(GL.GL_LINE_LOOP);
 				gl.glColor3d(1, 0.9, 0);
 				gl.glVertex3d(  0.02, 0.016, 0);
@@ -55,6 +49,5 @@ public class Target {
 				gl.glVertex3d(-0.007, 0.007, 0);
 				gl.glVertex3d( 0.007,-0.007, 0);
 			gl.glEnd();
-		//gl.glEndList();
 	}
 }

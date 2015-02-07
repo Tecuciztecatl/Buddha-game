@@ -9,97 +9,72 @@ public class Enemies {
 	public Vector<Enemy> enemy;
 	public int shipid;
 	public int shipidC;
-//	public int nDeads_Scapes;
-//	public int nEnemies;
 
+	/***
+	 * This method will create an array of enemies and will position them with random values.
+	 * @param nEnemies
+	 */
 	public Enemies (int nEnemies) {
-		//this.nEnemies = nEnemies;
-		//this.nDeads_Scapes = 0;
 		enemy = new Vector<Enemy>();
 		for ( int i = 0; i < nEnemies; i++) {
 			enemy.add(new Enemy(50, 5, Math.random() - 0.5, Math.random() - 0.5, -((Math.random()+0.01) * (nEnemies * 10))-50));
 		}
-/*		
-		for ( int i = 0; i < 5; i++) {
-			enemy.add(new Enemy(50, 5, Math.random() - 0.5, Math.random() - 0.5, -((Math.random()+0.01) * 50)-50));
-		}
-*/
-		//enemy.add(new Enemy(50, 5, 0.1, 0.3, -(50.0)));
 	}
 	
-
+	/***
+	 * This method will create an array of enemies and will position them with random values.
+	 * @param nEnemies
+	 */
 	public void new_Enemies (int nEnemies) {
-		//this.nEnemies = nEnemies;
-		//this.nDeads_Scapes = 0;
 		enemy = new Vector<Enemy>();
 		for ( int i = 0; i < nEnemies; i++) {
 			enemy.add(new Enemy(50, 5, Math.random() - 0.5, Math.random() - 0.5, -((Math.random()+0.01) * (nEnemies * 10))-50));
 		}
-		//enemy.add(new Enemy(50, 5, 0.1, 0.3, -(50.0)));
 	}
 	
 	public void DrawEnemies (GL gl) {
 		System.out.println(enemy.size());
 		for (int i = 0; i < enemy.size(); i++) {
 			System.out.println("Z - " + enemy.get(i).Z);
-			//CHECAR LAX X Y Y, por que al multiplicar por una z negativa se volver‡n siempre negativas! D: horror!
+			// Check X and Y, because when you multiply them by a negative Z, they will remain negative.
 			if (enemy.get(i).Z < -1 && enemy.get(i).Z > -100) {
-				//System.out.println(enemy.get(i).X);
-				//System.out.println(enemy.get(i).Y);
-				//System.out.println(enemy.get(i).Z);
 				gl.glPushMatrix();
-				//gl.glLoadIdentity();
-				//gl.glTranslated(enemy.get(i).X * (enemy.get(i).Z * -1), enemy.get(i).Y * (enemy.get(i).Z * -1), enemy.get(i).Z);
 				gl.glTranslated(enemy.get(i).X , enemy.get(i).Y, enemy.get(i).Z);
 				drawShip(gl);
 				gl.glPopMatrix();
-				//gl.glCallList(shipid);
-			}
-			if (enemy.get(i).Z < 0) {
-				//enemy.get(i).move();
 			}
 		}
 	}
-	
-	//CHECAR ESTA MADRE DE LAS COLISIONES! grrrr D:
-	public static boolean check_collissions (double X, double Y, Enemy enemy) {
-//		System.out.println("enemy x, y, z : "+enemy.X + ","+enemy.Y + ","+enemy.Z);
-//		System.out.println("enemy x, y, by z : "+enemy.X*(enemy.Z*-1) + ","+enemy.Y*(enemy.Z*-1) + ","+enemy.Z);
-//		System.out.println("target x, y : "+X + ","+Y);
-//		System.out.println("target x, y by Z: "+X*(enemy.Z*-1) + ","+Y*(enemy.Z*-1));
-//		if (X*(enemy.Z *-1)  < (enemy.X*(enemy.Z *-1)) + 3.5 && X*(enemy.Z *-1) > (enemy.X*(enemy.Z *-1)) - 3.5) {
-//			if (Y*(enemy.Z*-1) < 0.7 + (enemy.Y*(enemy.Z *-1)) && Y*(enemy.Z-1) > (enemy.Y*(enemy.Z *-1)) - 0.2) {
+	/***
+	 * Method to check if the target is pointing to the enemy
+	 * @param X Target's position in X
+	 * @param Y Target's position in Y
+	 * @param enemy Enemy with whom we are checking the target's collision
+	 * @return
+	 */
+	public static boolean check_collisions (double X, double Y, Enemy enemy) {
 		//Positive part, then the negative part! that is why I ain't multiplying by -1
 		//Now I will need to add an offset to compensate for some parts!, 
-		//the closer it is to an edge the bigger the offset because it is dependant
-		//to the edges distance
+		//the closer it is to an edge the bigger the offset because it is dependent
+		//to the edge'ss distance
 		if (X  < (enemy.X - (4/(enemy.Z))) && X > (enemy.X + (4/(enemy.Z)))) {
 			if (enemy.Y < 0.1) {
 				if (Y < (enemy.Y - (1.2/((enemy.Z+1))) - (enemy.Y/enemy.Z)) && Y > (enemy.Y + (0.2/(enemy.Z)))) {
-//					System.out.println("true;");
 					return true;
 				}
 			}
 			else {
 				if (Y < (enemy.Y - (0.2/(enemy.Z))) && Y > (enemy.Y + (0.7/(enemy.Z)) + (enemy.Y/enemy.Z))) {
-//					System.out.println("true;");
 					return true;
 				}
 			}
 		}
-
-//		System.out.println("false;");
 		return false;
 	}
 	
 
 	
 	public void drawShip(GL gl) {
-
-		//gl.glLoadIdentity();
-		//gl.glTranslated(0, 0, pos);
-
-
 		gl.glNewList(shipid, GL.GL_COMPILE);
 		gl.glBegin(GL.GL_TRIANGLE_STRIP);
 		//Tapa de abajo!

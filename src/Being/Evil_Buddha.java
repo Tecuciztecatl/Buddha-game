@@ -25,7 +25,6 @@ public class Evil_Buddha extends Enemy {
 	
 	public Evil_Buddha(double hp, int attackmax, double x, double y, double z, double strength, int energyhp) {
 		super(hp, attackmax, x, y, z);
-		// TODO Auto-generated constructor stub
 		this.maxHP = hp;
 		this.Attacking = false;
 		this.Attacks = 0;
@@ -40,10 +39,8 @@ public class Evil_Buddha extends Enemy {
 			buddhaNormal = TextureIO.newTexture(new File("src/Textures/evil_buddha_n.png"), false);
 			buddhaFiring = TextureIO.newTexture(new File("src/Textures/evil_buddha_a.png"), false);
 		} catch (GLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -51,7 +48,6 @@ public class Evil_Buddha extends Enemy {
 
 	public void new_Evil_Buddha(double hp, int attackmax, double x, double y, double z, double strength, int energyhp) {
 		super.newEnemy(hp, attackmax, x, y, z);
-		// TODO Auto-generated constructor stub
 		this.maxHP = hp;
 		this.Attacking = false;
 		this.Attacks = 0;
@@ -103,13 +99,9 @@ public class Evil_Buddha extends Enemy {
 		
 		if (this.X >= 3.14) {
 			this.left = true;
-//			System.out.println("if x, y = " +this.X+", "+this.Y);
-//			System.out.println("left = " +this.left);
 		}
 		else if (this.X <= -3.14) {
 			this.left = false;
-//			System.out.println("else x, y = " +this.X+", "+this.Y);
-//			System.out.println("left = " +this.left);
 		}
 		if (this.left == true) {
 			this.X -= 0.03;
@@ -134,24 +126,15 @@ public class Evil_Buddha extends Enemy {
 
 		gl.glPushMatrix();
 		
-
-		
-
-		
-		
 		gl.glEnable(GL.GL_BLEND);
 		gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
 
-		//gl.glTranslated(0, 2.5, 0);
 		gl.glTranslated(this.X * ((this.Z /7) * -1), (this.Y * ((this.Z /7) * -1)), this.Z);
 		
 		if (this.Attacks <= 0)
 			 this.recharging = true;
 		if (this.Attacks >= 3 && !this.recharging && (this.energy.size() == 0 || this.energy.isEmpty())) {
 			this.attack();
-			//buddhaFiring.bind();
-			//this.Attacks--;
-			//System.out.println(this.attacks/1000.0);
 		}
 		else {
 			if(this.Attacks < this.getAttackMAX()) {
@@ -216,16 +199,8 @@ public class Evil_Buddha extends Enemy {
 
 
 	public void attack() {
-/*		gl.glBegin(GL.GL_LINE_LOOP);
-			//gl.glColor3d(255, 160, 0);
-			gl.glColor3d(1, 0.9, 0);
-			gl.glVertex3d( 0, -2.5, this.Z-7);
-			gl.glVertex3d(this.target.targetX*8,this.target.targetY*8, this.target.targetZ-8);
-		gl.glEnd();
-*/
 		this.energy = new Vector<Energy>();
 		for (int i = 0; i < 3; i++) {
-//			System.out.println("ENERGY BALL CREATED!");
 			if ( i == 0)
 				this.energy.add(new Energy(this.energyhp, 0, 0, Math.random() - 0.5, this.Z, i));
 			else if ( i == 1)
@@ -233,33 +208,20 @@ public class Evil_Buddha extends Enemy {
 			else 
 				this.energy.add(new Energy(this.energyhp, 0, 0, 0, this.Z, i));
 			this.energy.get(i).setSpeed(0.09);
-			//this.Energy.add(new Enemy(50, 0, this.X - (width/2), this.Y - (height/2), -this.Z));
 		}
 		
 	}
 	
-	public boolean check_collissions (double X, double Y) {
-//		System.out.println("enemy x, y, z : "+this.X + ","+this.Y + ","+this.Z);
-//		System.out.println("enemy x, y, by z : "+enemy.X*(enemy.Z*-1) + ","+enemy.Y*(enemy.Z*-1) + ","+enemy.Z);
-//		System.out.println("target x, y : "+X + ","+Y);
-//		System.out.println("target x, y by Z: "+X*(enemy.Z*-1) + ","+Y*(enemy.Z*-1));
-//		if (X*(enemy.Z *-1)  < (enemy.X*(enemy.Z *-1)) + 3.5 && X*(enemy.Z *-1) > (enemy.X*(enemy.Z *-1)) - 3.5) {
-//			if (Y*(enemy.Z*-1) < 0.7 + (enemy.Y*(enemy.Z *-1)) && Y*(enemy.Z-1) > (enemy.Y*(enemy.Z *-1)) - 0.2) {
+	public boolean check_collisions (double X, double Y) {
 		//Positive part, then the negative part! that is why I ain't multiplying by -1
 		//Now I will need to add an offset to compensate for some parts!, 
-		//the closer it is to an edge the bigger the offset because it is dependant
+		//the closer it is to an edge the bigger the offset because it is dependent
 		//to the edges distance
 		if (X  < ((this.X/7) - (2/(this.Z))) && X > ((this.X/7) + (2/(this.Z)))) {
-//			System.out.println("ahmmmm");
-//			System.out.println("comparison of Y! ls "+ ((this.Y/7 ) - (3/(this.Z))));
-//			System.out.println("comparison of Y! gr "+ ((this.Y/7 ) + (3/(this.Z))));
 				if (Y < ((this.Y/7 ) - (3/(this.Z))) && Y > ((this.Y/7 ) + (3/(this.Z)))) {
-//					System.out.println("true;");
 					return true;
 				}
 		}
-
-//		System.out.println("false;");
 		return false;
 	}
 	
@@ -281,15 +243,12 @@ public class Evil_Buddha extends Enemy {
 			return;
 	}
 
-	
-//CHECAR ESTO! D:
 	//IT IS THE PART THAT WILL CHECK IF THE ENERGY IS HITTING YOU!
 	public void checkEnergyHittingYou(You you) {
 		if (this.energy.size() != 0) {
 			for (int i = this.energy.size() -1; i >= 0; i-- ) {
 				if (this.energy.get(i).Z > -7 && this.energy.get(i).Z < -1 && !this.energy.get(i).isDead()) {
 					you.deal_damage(this.energy.get(i).getStrength());
-//					System.out.println("damaged! you hp = " + you.getHP());
 					if (you.getHP() <= 0) {
 						you.Death_Always_Comes_for_you();
 					}

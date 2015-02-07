@@ -12,6 +12,14 @@ public class Enemy {
 	private boolean Visible;
 	private boolean dead;
 	
+	/***
+	 * 
+	 * @param hp Enemy total HP
+	 * @param attackmax Enemy's Attack value
+	 * @param x Enemy's X position
+	 * @param y Enemy's Y position
+	 * @param z Enemy's Z position
+	 */
 	public Enemy (double hp, int attackmax, double x, double y, double z) {
 		this.setHP(hp);
 		this.setAttackMAX(attackmax);
@@ -23,7 +31,15 @@ public class Enemy {
 		this.dead = false;
 		this.Strength = 0.08;
 	}
-	
+
+	/***
+	 * 
+	 * @param hp Enemy total HP
+	 * @param attackmax Enemy's Attack value
+	 * @param x Enemy's X position
+	 * @param y Enemy's Y position
+	 * @param z Enemy's Z position
+	 */
 	public void newEnemy (double hp, int attackmax, double x, double y, double z) {
 		this.setHP(hp);
 		this.setAttackMAX(attackmax);
