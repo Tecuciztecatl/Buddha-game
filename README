@@ -1,0 +1,16 @@
+Buddha-game is a Game created using the JOGL library and Java.
+
+The keys to play are:
+	left arrow - move pointer to the left.
+	right arrow - move pointer to the right.
+	up arrow - move pointer up.
+	down arrow - move pointer down.
+	space bar - shoot laser where the pointer is aiming.
+	esc key - show menu, pause game.
+
+You can shoot the laser to destroy ships with the spacebar, it can be held down.
+If you hold down the space bar long enough, your "stamina" is going to deplete and you will need to rest for it to fill up and be able to shoot the laser again.
+
+Each time an enemy goes thru you, you will lose life.
+
+When you have defeated 100 enemies you will face the "evil Buddha"; this enemy will shoot three energy balls that are filled with malicious intentions, you will have to shoot these malicious intentions in order for them to not reach you and corrupt your soul.
