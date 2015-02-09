@@ -1,13 +1,13 @@
 Buddha-game is a Game created using the JOGL 1.11 library and Java for a MacOSX system.
 
 The keys to play are:
-	left arrow (A) - move pointer to the left.
+	left arrow (A)  - move pointer to the left.
 	right arrow (D) - move pointer to the right.
-	up arrow (W) - move pointer up.
-	down arrow (S) - move pointer down.
-	space bar - shoot laser where the pointer is aiming.
-	esc key - show menu, pause game. Resume when paused.
-	enter key - choose highlighted item.
+	up arrow (W)    - move pointer up.
+	down arrow (S)  - move pointer down.
+	space bar       - shoot laser where the pointer is aiming.
+	esc key         - show menu, pause game. Resume when paused.
+	enter key       - choose highlighted item.
 
 You can shoot the laser to destroy ships with the spacebar, it can be held down.
 If you hold down the space bar long enough, your "stamina" is going to deplete and you will need to rest for it to fill up and be able to shoot the laser again.
@@ -18,5 +18,5 @@ When you have defeated 100 enemies you will face the "evil Buddha"; this enemy w
 
 
  = = = = = = = = = = = = = = = I  M  P  O  R  T  A  N  T  = = = = = = = = = = = = = = =
-NOTE: At this point in time, this project only works on MacOSX
+	NOTE: At this point in time, this project only works on MacOSX
  = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
